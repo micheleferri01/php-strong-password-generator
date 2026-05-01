@@ -10,7 +10,7 @@
     <h2>Genera la tua password sicura</h2>
 
     <div>
-        <form action="result.php" mehtod='GET'>
+        <form action="result.php" method='GET'>
             <div>
                 <label for="pass-lenght">Lunghezza password:</label>
                 <input type="number" id='pass-lenght' name='password_lenght' required>
@@ -18,14 +18,14 @@
             <div>
                 <p>Consenti ripetizione di uno o più caratteri:</p>
                 <div>
-                    <input type="radio" name="doubled_chars_allowed" id="doubled-chars-allowed-yes" value='Si'>
+                    <input type="radio" name="doubled_chars_allowed" id="doubled-chars-allowed-yes" value='Si' required>
                     <label for="doubled-chars-allowed-yes">Si</label>
-                    <input type="radio" name="doubled_chars_allowed" id="doubled-chars-allowed-no" value='No'>
+                    <input type="radio" name="doubled_chars_allowed" id="doubled-chars-allowed-no" value='No' required>
                     <label for="doubled-chars-allowed-no">No</label>
                 </div>
             </div>
             <div>
-                <p></p>
+                <p>Seleziona almeno un'opzione</p>
                 <div>
                     <input type="checkbox" name="letters" id="letters">
                     <label for="letters">Lettere</label>
