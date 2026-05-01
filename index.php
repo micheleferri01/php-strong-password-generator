@@ -1,9 +1,3 @@
-
-<?php 
-$password_lenght = isset($_GET['password_lenght']) && $_GET['password_lenght']!== ''? (int)$_GET['password_lenght'] : null;
-
-require_once('./functions.php');
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +10,7 @@ require_once('./functions.php');
     <h2>Genera la tua password sicura</h2>
 
     <div>
-        <form action="" mehtod='GET'>
+        <form action="result.php" mehtod='GET'>
             <div>
                 <label for="pass-lenght">Lunghezza password</label>
                 <input type="number" id='pass-lenght' name='password_lenght' required>
@@ -24,8 +18,6 @@ require_once('./functions.php');
 
             <button type='submit'>Genera password</button>
         </form>
-
-        <p>Password generata: <?php echo passwordGenerator($password_lenght); ?></p>
     </div>
 </body>
 </html>
