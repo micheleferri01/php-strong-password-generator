@@ -12,8 +12,32 @@
     <div>
         <form action="result.php" mehtod='GET'>
             <div>
-                <label for="pass-lenght">Lunghezza password</label>
+                <label for="pass-lenght">Lunghezza password:</label>
                 <input type="number" id='pass-lenght' name='password_lenght' required>
+            </div>
+            <div>
+                <p>Consenti ripetizione di uno o più caratteri:</p>
+                <div>
+                    <input type="radio" name="doubled_chars_allowed" id="doubled-chars-allowed-yes" value='Si'>
+                    <label for="doubled-chars-allowed-yes">Si</label>
+                    <input type="radio" name="doubled_chars_allowed" id="doubled-chars-allowed-no" value='No'>
+                    <label for="doubled-chars-allowed-no">No</label>
+                </div>
+            </div>
+            <div>
+                <p></p>
+                <div>
+                    <input type="checkbox" name="letters" id="letters">
+                    <label for="letters">Lettere</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="numbers" id="numbers">
+                    <label for="numbers">Numeri</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="simbols" id="simbols">
+                    <label for="simbols">Simboli</label>
+                </div>
             </div>
 
             <button type='submit'>Genera password</button>
