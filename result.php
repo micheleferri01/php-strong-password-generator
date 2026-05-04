@@ -25,22 +25,24 @@ $allowedChars = null;
     <!-- bootstrap -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
-<body>
-    <h1>Password generata</h1>
-    <?php
+<body class='container bg-info'>
+    <h1 class='mt-5 mb-3 text-center'>Password generata</h1>
+    <span class='card fs-3 text-center'>
+        <?php
         if (!$letters_allowed && !$numbers_allowed && !$simbols_allowed) {
             $error = 'Devi selezionare almeno un tipo di carattere';
-           echo "<p>$error</p>";
+           echo "<p class='m-0'>$error</p>";
         } elseif (empty($password_lenght) || $password_lenght <= 0) {
             $error = 'Lunghezza password non valida';
-            echo "<p>$error</p>";
+            echo "<p class='m-0'>$error</p>";
         } else {
             $allowedChars = allowed_chars($numbers_allowed, $simbols_allowed, $letters_allowed);
             $generatedPassword = passwordGenerator($password_lenght, $doubled_chars_allowed, $allowedChars);
-            echo "<p>$generatedPassword</p>";
+            echo "<p class='m-0'>$generatedPassword</p>";
         }
-    ?>
-
+        ?>
+    </span>
+    
     <!-- script bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
