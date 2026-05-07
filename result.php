@@ -1,18 +1,9 @@
 <?php
-require_once('./functions.php');
 
-$error = null;
+    session_start();
 
-$password_lenght = isset($_GET['password_lenght']) && $_GET['password_lenght']!== ''? (int)$_GET['password_lenght'] : null;
-
-$doubled_chars_allowed = $_GET['doubled_chars_allowed']?? null;
-
-$letters_allowed = !empty($_GET['letters']);
-$numbers_allowed = !empty($_GET['numbers']);
-$simbols_allowed = !empty($_GET['simbols']);
-
-// stringa dei valori permessi
-$allowedChars = null;
+    $password = $_SESSION['generatedPassword'] ?? null;
+    $error = $_SESSION['error'] ?? null;
 
 ?>
 <!DOCTYPE html>
@@ -27,21 +18,22 @@ $allowedChars = null;
 </head>
 <body class='container bg-info'>
     <h1 class='mt-5 mb-3 text-center'>Password generata</h1>
-    <span class='card fs-3 text-center'>
+    <div class='card fs-3 text-center'>
         <?php
-        if (!$letters_allowed && !$numbers_allowed && !$simbols_allowed) {
-            $error = 'Devi selezionare almeno un tipo di carattere';
-           echo "<p class='m-0'>$error</p>";
-        } elseif (empty($password_lenght) || $password_lenght <= 0) {
-            $error = 'Lunghezza password non valida';
-            echo "<p class='m-0'>$error</p>";
-        } else {
-            $allowedChars = allowed_chars($numbers_allowed, $simbols_allowed, $letters_allowed);
-            $generatedPassword = passwordGenerator($password_lenght, $doubled_chars_allowed, $allowedChars);
-            echo "<p class='m-0'>$generatedPassword</p>";
-        }
+            if($error) {
+                echo "<p class='m-0 fs-3'>$error</p>";
+            }elseif ($password) {
+                 echo "<p class='m-0 fs-3'>$password</p>";
+            }else {
+                echo "<p class='m-0 fs-3'>Nessuna password generata.</p>";
+            }
+
+            unset($_SESSION['generatedPassword']);
+            unset($_SESSION['error']);
         ?>
-    </span>
+    </div>
+
+    <a href="./index.php" class='btn btn-primary mt-3'>Torna indietro</a>
     
     <!-- script bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

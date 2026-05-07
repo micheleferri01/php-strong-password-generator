@@ -1,3 +1,33 @@
+<?php
+    session_start();
+    require_once('./functions.php');
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
+        $password_lenght = isset($_GET['password_lenght']) && $_GET['password_lenght']!== ''? (int)$_GET['password_lenght'] : null;
+
+        $doubled_chars_allowed = $_GET['doubled_chars_allowed']?? null;
+
+        $letters_allowed = !empty($_GET['letters']);
+        $numbers_allowed = !empty($_GET['numbers']);
+        $simbols_allowed = !empty($_GET['simbols']);
+
+        // stringa dei valori permessi
+        $allowedChars = null;
+
+         if (!$letters_allowed && !$numbers_allowed && !$simbols_allowed) {
+            $_SESSION['error'] = 'Devi selezionare almeno un tipo di carattere';
+        } elseif (empty($password_lenght) || $password_lenght <= 0) {
+            $_SESSION['error'] = 'Lunghezza password non valida';
+        } else {
+            $allowedChars = allowed_chars($numbers_allowed, $simbols_allowed, $letters_allowed);
+            $generatedPassword = passwordGenerator($password_lenght, $doubled_chars_allowed, $allowedChars);
+            $_SESSION['generatedPassword'] = $generatedPassword;
+
+            header('Location: result.php');
+            exit;
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +46,7 @@
     <h2 class='text-center'>Genera la tua password sicura</h2>
 
     <div class='d-flex justify-content-center mt-4'>
-        <form action="result.php" method='GET' class='card p-3'>
+        <form action="index.php" method='GET' class='card p-3'>
                 <div class='d-flex justify-content-between mb-3'>
                     <label for="pass-lenght">Lunghezza password:</label>
                     <input type="number" id='pass-lenght' name='password_lenght' required>
